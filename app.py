@@ -10,7 +10,7 @@ class Window(Frame):
 oc = Oct2Py()
 root = Tk()
 app = Window(root)
-def submitCallback(_J, _b, _Ke, _Kt):
+def submitCallback(_J, _b, _Ke, _Kt, isUnitStep):
     # if parameters are not inputted, set default parameters
     if _J == '':
         _J = 1.3
@@ -24,8 +24,10 @@ def submitCallback(_J, _b, _Ke, _Kt):
     b = float(_b)
     Ke = float(_Ke)
     Kt = float(_Kt)
-    out = oc.tfPlot(J, b, Ke, Kt)
-    print(out)
+    if isUnitStep:
+        oc.unitStepPlot(J, b, Ke, Kt)
+    else:
+        oc.unitImpulsePlot(J, b, Ke, Kt)
 
 # set window title
 root.wm_title('SOEN 385 Project')
@@ -48,7 +50,8 @@ Ke.grid(row=3, column=1)
 Kt = Entry(root)
 Kt.grid(row=4, column=1)
 
-Button(root, text='Plot', command=lambda: submitCallback(J.get(), b.get(), Ke.get(), Kt.get())).grid(row=7, columnspan=2)
+Button(root, text='Plot unit step response', command=lambda: submitCallback(J.get(), b.get(), Ke.get(), Kt.get(), True)).grid(row=7, columnspan=2)
+Button(root, text='Plot unit impulse response', command=lambda: submitCallback(J.get(), b.get(), Ke.get(), Kt.get(), False)).grid(row=8, columnspan=2)
 
 # show window
 root.mainloop()
