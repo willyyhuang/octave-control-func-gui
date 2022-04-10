@@ -2,6 +2,12 @@
 
 Simple GUI for control system parameters
 
-To install dependency, please use
+To install python dependency, please use
 
 `pip install -r requirements.txt`
+
+Other dependencies:
+
+- octave
+- gnuplot
+- octave control package
