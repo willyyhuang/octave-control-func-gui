@@ -1,17 +1,27 @@
 from tkinter import *
 from oct2py import Oct2Py
-import os
 
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
 
+# Octave instance
 oc = Oct2Py()
 root = Tk()
 app = Window(root)
+
 def submitCallback(_J, _b, _Ke, _Kt, isUnitStep):
-    # if parameters are not inputted, set default parameters
+    """submitCallback is the callback when a button is clicked.
+
+    Args:
+        _J (string): Value of parameter J
+        _b (string): Value of parameter b
+        _Ke (string): Value of parameter Ke
+        _Kt (string): Value of parameter Kt
+        isUnitStep (bool): Plot either Unit-step response or Unit-impulse response
+    """
+    # if parameters are not inputted, set default parameters values
     if _J == '':
         _J = 1.3
     if _b == '':
@@ -33,7 +43,6 @@ def submitCallback(_J, _b, _Ke, _Kt, isUnitStep):
 root.wm_title('SOEN 385 Project')
 
 Label(root, text='Change the parameters of the system').grid(row=0, columnspan=2)
-
 Label(root, text='J = Moment of Inertia of rotor (between 1.00 to 1.50)').grid(row=1)
 Label(root, text='b = Motor Viscous Friction Constant (between 1.50 and 2.00)').grid(row=2)
 Label(root, text='Ke = Electromotive Force Constant (between 1.50 and 2.00)').grid(row=3)
