@@ -1,26 +1,30 @@
 from tkinter import *
-from oct2py import octave
+from oct2py import Oct2Py
+import os
 
 class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
         self.master = master
-        
+
+oc = Oct2Py()
 root = Tk()
 app = Window(root)
-
 def submitCallback(_J, _b, _Ke, _Kt):
-    if _J is None:
-        _J = 1
-    if _b is None:
-        _b = 1.5
-    if _Ke is None:
-        _Ke = 1.5
-    if _Kt is None:
-        _Kt = 1.5
-
-    print('Plotting')
-    out = octave.tfPlot(float(_J), float(_b), float(_Ke), float(_Kt))
+    # if parameters are not inputted, set default parameters
+    if _J == '':
+        _J = 1.3
+    if _b == '':
+        _b = 1.75
+    if _Ke == '':
+        _Ke = 1.6
+    if _Kt == '':
+        _Kt = 1.9
+    J = float(_J)
+    b = float(_b)
+    Ke = float(_Ke)
+    Kt = float(_Kt)
+    out = oc.tfPlot(J, b, Ke, Kt)
     print(out)
 
 # set window title
