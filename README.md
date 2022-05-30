@@ -1,4 +1,4 @@
-# soen-385
+# Octave Control Function GUI
 
 Simple GUI for control system parameters
 
